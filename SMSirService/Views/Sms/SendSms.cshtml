@@ -1,0 +1,35 @@
+﻿@model SMSirService.Models.ViewModels.SendSmsViewModel
+
+@{
+    ViewData["Title"] = "Send";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Text Message</h1>
+
+<h4>Sending text messages with the SMS.ir system</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="SendSms" asp-controller="Sms" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Recipient" class="control-label">Recipient Number(s) (Separated by Commas)</label>
+                <input asp-for="Recipient" class="form-control" />
+                <span asp-validation-for="Recipient" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Message" class="control-label"></label>
+                <textarea asp-for="Message" class="form-control" rows="10"></textarea>
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Send" class="btn btn-primary mt-2" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
